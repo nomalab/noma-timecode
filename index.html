@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>noma-timecode</title>
+  <script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+
+  <style type="text/css">
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .w {
+      width: 50%;
+    }
+
+    .timecode {
+      display: flex;
+      background-color: #181f29;
+      padding: 2px;
+      cursor: pointer;
+    }
+
+    .timecode div.hh,
+    .timecode div.mm,
+    .timecode div.ss,
+    .timecode div.ff {
+      margin: 2px;
+      border-right: 2px solid #181f29;
+      background-color: #232D3A;
+      color: #878E96;
+      height: 24px;
+      padding: 0px 3px;
+      line-height: 24px;
+      justify-content: center;
+      font-weight: 600;
+      letter-spacing: 2px;
+      display: flex;
+      flex-direction: row;
+      flex: 1 1;
+      min-width: 0px;
+    }
+  
+    .timecode button {
+      cursor: pointer;
+      background: #232d3a;
+      border: none;
+      outline: none;
+    }
+
+    .timecode input {
+      border: 0px solid #181f29;
+      margin: 0px;
+      color: #CFD1D5;
+      padding: 6px;
+      background: #232D3A;
+      outline: none;
+      flex-grow: 1;
+    }
+
+    .timecode path {
+      stroke: #3BAAFF;
+    }
+
+  </style>
+  
+  <title>noma-timecode</title>
+
+  <div class="w">
+    <noma-timecode timecode="01:01:01:01" class="timecode">
+  </div>
+
+
+  <script type="text/javascript">
+    
+    var tc = document.querySelector('noma-timecode');
+
+    tc.addEventListener('timecode', function (evt) {
+
+      alert(`timecode event triggered with detail: ${evt.detail}`);
+    });
+
+  </script>
+
+</body>
+</html>
