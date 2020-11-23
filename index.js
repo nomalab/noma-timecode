@@ -7,7 +7,7 @@
  * parse and validate timecode
  */
 function parse(string) {
-  var match = string.match(/^([0-9][0-9]):([0-9][0-9]):([0-9][0-9])([:,;])([0-9][0-9])$/);
+  var match = string.match(/^([0-9][0-9]):([0-9][0-9]):([0-9][0-9])([:,;])([0-9]{2,})$/);
   if(match) {
     var hh = match[1]
         mm = match[2],
@@ -79,6 +79,7 @@ class NomaTimecode extends HTMLElement {
     this.btn.addEventListener('click', this.onSaveClick(this));
     this.input.focus();
     this.input.addEventListener('keydown', this.onKeyDown(this));
+    this.input.addEventListener('blur', this.onBlur(this));
   }
 
 
@@ -92,6 +93,11 @@ class NomaTimecode extends HTMLElement {
         self._bind();
       }
     }
+  }
+
+
+  onBlur(self) {
+    return self.onSaveClick(self);
   }
 
 
