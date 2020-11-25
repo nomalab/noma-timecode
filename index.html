@@ -21,6 +21,7 @@
 
     .w {
       width: 50%;
+      margin: auto;
     }
 
     .timecode {
@@ -33,12 +34,13 @@
     .timecode div.hh,
     .timecode div.mm,
     .timecode div.ss,
+    .timecode div.drop,
     .timecode div.ff {
       margin: 2px;
       border-right: 2px solid #181f29;
       background-color: #232D3A;
       color: #878E96;
-      height: 24px;
+      height: 25px;
       padding: 0px 3px;
       line-height: 24px;
       justify-content: center;
@@ -50,6 +52,24 @@
       min-width: 0px;
     }
   
+    .timecode div.delimiter,
+    .timecode div.drop {
+      margin: 2px;
+      border-right: 2px solid #181f29;
+      background-color: #181f29;
+      color: #878E96;
+      height: 25px;
+      padding: 0px 3px;
+      line-height: 24px;
+      justify-content: center;
+      font-weight: 600;
+      letter-spacing: 2px;
+      display: flex;
+      flex-direction: row;
+      flex: 0 0;
+      min-width: 0px;
+    }
+
     .timecode button {
       cursor: pointer;
       background: #232d3a;
@@ -71,24 +91,38 @@
       stroke: #3BAAFF;
     }
 
+    .log {
+      margin: 10px;
+      color: white;
+      text-align: center;
+    }
+
   </style>
   
   <title>noma-timecode</title>
 
   <div class="w">
-    <noma-timecode timecode="01:01:01:01" class="timecode">
+    <noma-timecode id="tc0" timecode="01:01:01;01" class="timecode"></noma-timecode>
+    <noma-timecode id="tc1" timecode="12:12:12:120" class="timecode"></noma-timecode>
+    <noma-timecode id="tc2" timecode="00:59:59:00" class="timecode"></noma-timecode>
+    <div class="log">timecode event logs</div>
   </div>
 
-
   <script type="text/javascript">
-    
-    var tc = document.querySelector('noma-timecode');
+    var log = document.querySelector('.log');
+    var tc0 = document.querySelector('noma-timecode');
+    var tc1 = document.querySelector('noma-timecode');
+    var tc2 = document.querySelector('noma-timecode');
 
-    tc.addEventListener('timecode', function (evt) {
+    function l(evt) {
+      log.innerHTML = `timecode event triggered with detail: ${evt.detail}<br>`;
+    }
 
-      alert(`timecode event triggered with detail: ${evt.detail}`);
-    });
+    tc0.addEventListener('timecode', l);
 
+    tc1.addEventListener('timecode', l);
+
+    tc2.addEventListener('timecode', l);
   </script>
 
 </body>

@@ -165,7 +165,7 @@ class NomaTimecode extends HTMLElement {
   }
 
 
-  _bind() {    
+  _bind() {
     this.addEventListener('click', this.__onClick);
   }
 
@@ -175,11 +175,20 @@ class NomaTimecode extends HTMLElement {
 `<div class="hh">
 <span>${this.tc.hh}</span>
 </div>
+<div class="delimiter">
+<span>:</span>
+</div>
 <div class="mm">
 <span>${this.tc.mm}</span>
 </div>
+<div class="delimiter">
+<span>:</span>
+</div>
 <div class="ss">
 <span>${this.tc.ss}</span>
+</div>
+<div class="drop">
+<span>${this.tc.drop}</span>
 </div>
 <div class="ff">
 <span>${this.tc.ff}</span>
