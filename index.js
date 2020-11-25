@@ -69,6 +69,7 @@ class NomaTimecode extends HTMLElement {
     this.renderEditMode();
     this.input = this.querySelector('input');
     this.input.value = tc2string(this.tc);
+    this.__initValue = this.input.value;
     this._bindEditMode();
   }
 
@@ -105,14 +106,16 @@ class NomaTimecode extends HTMLElement {
     return function (evt) {
       evt.preventDefault();
       evt.stopPropagation();
-      var tc = parse(self.input.value.trim());
+      var str = self.input.value.trim();
+      var tc = parse(str);
       if(tc) {
         self.editing = false;
         self.tc = tc;
         self.render();
         self._bind();
-
-        self.sendEvent();
+        if(str != self.__initValue) {
+          self.sendEvent();
+        }
 
       } else {
         self.animate(

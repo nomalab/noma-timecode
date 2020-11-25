@@ -115,7 +115,7 @@
     var tc2 = document.querySelector('#tc2');
 
     function l(evt) {
-      log.innerHTML = `timecode event triggered with detail: ${evt.detail}<br>`;
+      log.innerHTML = `timecode event triggered from #${evt.srcElement.id} with detail: ${evt.detail}<br>`;
     }
 
     tc0.addEventListener('timecode', l);
